@@ -109,7 +109,7 @@ export default class ManyRelationship extends Relationship {
       return;
     }
 
-    if(DEBUG) {
+    if (DEBUG) {
       assertPolymorphicType(this.internalModel, this.relationshipMeta, internalModel);
     }
     super.addInternalModel(internalModel, idx);

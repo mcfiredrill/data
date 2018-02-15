@@ -256,7 +256,7 @@ BelongsToReference.prototype.push = function(objectOrPromise) {
       record = this.store.push(data);
     }
 
-    if(DEBUG) {
+    if (DEBUG) {
       assertPolymorphicType(this.internalModel, this.belongsToRelationship.relationshipMeta, record._internalModel);
     }
 

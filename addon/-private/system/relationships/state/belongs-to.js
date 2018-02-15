@@ -100,7 +100,7 @@ export default class BelongsToRelationship extends Relationship {
   addInternalModel(internalModel) {
     if (this.members.has(internalModel)) { return; }
 
-    if(DEBUG) {
+    if (DEBUG) {
       assertPolymorphicType(this.internalModel, this.relationshipMeta, internalModel);
     }
 
