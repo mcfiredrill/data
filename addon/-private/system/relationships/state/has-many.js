@@ -1,5 +1,6 @@
 import { assert } from '@ember/debug';
 import { assertPolymorphicType } from 'ember-data/-debug';
+import { DEBUG } from '@glimmer/env';
 import { PromiseManyArray } from '../../promise-proxies';
 import Relationship from './relationship';
 import OrderedSet from '../../ordered-set';
@@ -108,7 +109,9 @@ export default class ManyRelationship extends Relationship {
       return;
     }
 
-    assertPolymorphicType(this.internalModel, this.relationshipMeta, internalModel);
+    if(DEBUG) {
+      assertPolymorphicType(this.internalModel, this.relationshipMeta, internalModel);
+    }
     super.addInternalModel(internalModel, idx);
     // make lazy later
     this.manyArray._addInternalModels([internalModel], idx);

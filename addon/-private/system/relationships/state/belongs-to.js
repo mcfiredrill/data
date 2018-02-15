@@ -1,6 +1,7 @@
 import { Promise as EmberPromise } from 'rsvp';
 import { assert, inspect } from '@ember/debug';
 import { assertPolymorphicType } from 'ember-data/-debug';
+import { DEBUG } from '@glimmer/env';
 import {
   PromiseObject
 } from "../../promise-proxies";
@@ -99,7 +100,9 @@ export default class BelongsToRelationship extends Relationship {
   addInternalModel(internalModel) {
     if (this.members.has(internalModel)) { return; }
 
-    assertPolymorphicType(this.internalModel, this.relationshipMeta, internalModel);
+    if(DEBUG) {
+      assertPolymorphicType(this.internalModel, this.relationshipMeta, internalModel);
+    }
 
     if (this.inverseInternalModel) {
       this.removeInternalModel(this.inverseInternalModel);

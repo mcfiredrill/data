@@ -4,6 +4,7 @@ import Reference from './reference';
 
 import isEnabled from '../../features';
 import { deprecate } from '@ember/debug';
+import { DEBUG } from '@glimmer/env';
 import { assertPolymorphicType } from 'ember-data/-debug';
 
 /**
@@ -255,7 +256,9 @@ BelongsToReference.prototype.push = function(objectOrPromise) {
       record = this.store.push(data);
     }
 
-    assertPolymorphicType(this.internalModel, this.belongsToRelationship.relationshipMeta, record._internalModel);
+    if(DEBUG) {
+      assertPolymorphicType(this.internalModel, this.belongsToRelationship.relationshipMeta, record._internalModel);
+    }
 
     this.belongsToRelationship.setCanonicalInternalModel(record._internalModel);
 
